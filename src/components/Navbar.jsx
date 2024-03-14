@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Button } from './ui/button';
 import { AlertDialog, AlertDialogContent, AlertDialogTrigger,AlertDialogHeader  } from '@/components/ui/alert-dialog';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from './ui/sheet';
-
+import CarouselComponent from './CarouselComponent';
 
 
 const Navbar = () => {
@@ -31,7 +31,7 @@ const Navbar = () => {
     }, []);
     
   return (
-    <div className='flex items-center justify-center py-2 px-4 mx-auto'>
+    <div className='flex items-center justify-center mx-auto sticky top-0 z-10'>
       <div className='mx-auto'><img src='' width={125} height={40} alt='logo'/></div>
 
 
@@ -41,7 +41,7 @@ const Navbar = () => {
         {data.map((items) =>(
             <li key={items.id}>
 
-                <Link to={items.href} className='capitalize text-sm '>{items.section}</Link>
+                <Link to={items.href} className='uppercase text-md  '>{items.section}</Link>
             </li>
         ))}
       </ul>
@@ -59,8 +59,10 @@ const Navbar = () => {
       </AlertDialog>
       <Sheet>
         <SheetTrigger asChild>
-          <Button variant={"ghost"} size={"sm"}>
-          Click
+          <Button variant={"ghost"} size={"sm"} className='block sm:hidden'>
+          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 50 50">
+<path d="M 5 8 A 2.0002 2.0002 0 1 0 5 12 L 45 12 A 2.0002 2.0002 0 1 0 45 8 L 5 8 z M 5 23 A 2.0002 2.0002 0 1 0 5 27 L 45 27 A 2.0002 2.0002 0 1 0 45 23 L 5 23 z M 5 38 A 2.0002 2.0002 0 1 0 5 42 L 45 42 A 2.0002 2.0002 0 1 0 45 38 L 5 38 z"></path>
+</svg>
           </Button>
         </SheetTrigger>
         <SheetContent>
