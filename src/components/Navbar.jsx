@@ -3,11 +3,38 @@ import { useState,useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import { Button } from './ui/button';
 import { AlertDialog, AlertDialogContent, AlertDialogTrigger,AlertDialogHeader  } from '@/components/ui/alert-dialog';
+
+
+
+
+
+
+
+
+import { Moon, Sun } from "lucide-react"
+
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { useTheme } from "@/components/theme-provider"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from './ui/sheet';
-import CarouselComponent from './CarouselComponent';
+
+
+
+
+
+
+
+
+
+
 
 
 const Navbar = () => {
+  const { setTheme } = useTheme()
     const [data,setData] = useState([]);
     
 
@@ -31,7 +58,7 @@ const Navbar = () => {
     }, []);
     
   return (
-    <div className='flex items-center justify-center mx-auto sticky top-0 z-10 h-full w-full bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10'>
+    <div className='flex items-center justify-center mx-auto sticky top-0 z-10 h-full w-full bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 py-2 px-4'>
       <div className='mx-auto'><img src='' width={125} height={40} alt='logo'/></div>
 
 
@@ -50,6 +77,7 @@ const Navbar = () => {
       <Button variant={"ghost"} size={"sm"}>
           Sign Up
       </Button>
+     
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
@@ -57,6 +85,7 @@ const Navbar = () => {
         </AlertDialogHeader>
       </AlertDialogContent>
       </AlertDialog>
+      
       <Sheet>
         <SheetTrigger asChild>
           <Button variant={"ghost"} size={"sm"} className='block sm:hidden'>
@@ -74,6 +103,26 @@ const Navbar = () => {
           </SheetHeader>
         </SheetContent>
       </Sheet>
+      <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="outline" size="icon">
+          <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+          <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+          <span className="sr-only">Toggle theme</span>
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end">
+        <DropdownMenuItem onClick={() => setTheme("light")}>
+          Light
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme("dark")}>
+          Dark
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme("system")}>
+          System
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
     </div>
   )
 }

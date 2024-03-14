@@ -1,22 +1,52 @@
 import React from 'react'
-import { Input } from './ui/input'
-import { Button } from './ui/button'
+import { useState,useEffect } from 'react'
+import { Link } from 'react-router-dom';
 
-const Form = () => {
+
+const Data = () => {
+  const [data, setData] = useState([]);
+
+
+
+  useEffect(() =>{
+  const fetchData = async () => {
+    try {
+      const response = await fetch('https://vercel-cloud-backend-git-main-lukabartos-projects.vercel.app/api/getitems');
+      if (response.ok) {
+        const jsonData = await response.json(); // Parse response body as JSON
+        setData(jsonData);
+        console.log(jsonData);
+      } else {
+        console.log('Error fetching data:', response.status);
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    };
+    
+  };
+  fetchData();
+},[])
+  
   return (
-    <div>
-       <div className='flex items-center justify-center h-1/2 w-1/2 z-10 absolute '>
-            <div className='hidden sm:block sm:w-[600px]'>
-                <div className='flex gap-2'>
-            <Input type='search' placeholder='Search' />
-            <Button>
-                Search
-            </Button>
-            </div>
-            </div>
+   
+
+
+
+
+    <div className='w-full border shadow-md rounded py-2 px-4'>
+        {data.map((items) =>(
+          <div key={items.id}>
+            <Link to={`/details/${items.id}`}>
+            <p>{items.name}</p>
+            
+            <p>${items.price}</p>
+          
+            <img src={items.image} width={400} height={600} alt={items.name} />
+            </Link>
           </div>
+        ))}
     </div>
   )
 }
 
-export default Form
+export default Data
