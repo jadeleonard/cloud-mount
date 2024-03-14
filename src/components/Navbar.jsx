@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom';
 import { Button } from './ui/button';
 import { AlertDialog, AlertDialogContent, AlertDialogTrigger,AlertDialogHeader  } from '@/components/ui/alert-dialog';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from './ui/sheet';
-import { Avatar } from './ui/avatar';
-import { AvatarImage } from '@radix-ui/react-avatar';
+
 
 
 const Navbar = () => {
@@ -18,7 +17,7 @@ const Navbar = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('vercel-cloud-backend-git-main-lukabartos-projects.vercel.app/api/navbar');
+                const response = await fetch('https://vercel-cloud-backend-git-main-lukabartos-projects.vercel.app/api/navbar');
                 if (response.ok) {
                     const jsonData = await response.json(); // Await JSON parsing
                     setData(jsonData); // Set state with parsed JSON data
@@ -42,7 +41,7 @@ const Navbar = () => {
         {data.map((items) =>(
             <li key={items.id}>
 
-                <Link to={items.href}>{items.name}</Link>
+                <Link to={items.href} className='capitalize text-sm '>{items.section}</Link>
             </li>
         ))}
       </ul>
@@ -61,11 +60,7 @@ const Navbar = () => {
       <Sheet>
         <SheetTrigger asChild>
           <Button variant={"ghost"} size={"sm"}>
-            <Avatar>
-              <AvatarImage src='https://github.com/shadcn.png'/>
-
-              
-            </Avatar>
+          Click
           </Button>
         </SheetTrigger>
         <SheetContent>
