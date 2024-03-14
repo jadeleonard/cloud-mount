@@ -19,7 +19,7 @@ const LandingPage = () => {
        <CarouselComponent />
         
 
- 
+        
     </div>
   )
 }
