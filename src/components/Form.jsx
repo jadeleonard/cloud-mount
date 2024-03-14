@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState,useEffect } from 'react'
 import { Link } from 'react-router-dom';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 
 
 const Data = () => {
@@ -30,21 +31,28 @@ const Data = () => {
   return (
    
 
-
-
-
-    <div className='w-full border shadow-md rounded py-2 px-4'>
+    <div className=''>
+      <Card>
+      
         {data.map((items) =>(
-          <div key={items.id}>
-            <Link to={`/details/${items.id}`}>
-            <p>{items.name}</p>
-            
-            <p>${items.price}</p>
-          
-            <img src={items.image} width={400} height={600} alt={items.name} />
-            </Link>
-          </div>
+          <Link to={`/details/${items.id}`}>
+          <CardContent key={items.id}>
+            <CardHeader>
+              ${items.price}
+            </CardHeader>
+            <CardTitle>
+              {items.name}
+            </CardTitle>
+              <CardDescription>
+                <img src={items.image} className='relative rounded object-fit' />
+              </CardDescription>
+              <CardDescription>
+                {items.description}
+              </CardDescription>
+          </CardContent>
+          </Link>
         ))}
+      </Card>
     </div>
   )
 }
