@@ -31,7 +31,7 @@ const Navbar = () => {
     }, []);
     
   return (
-    <div className='flex items-center justify-center mx-auto sticky top-0 z-10'>
+    <div className='flex items-center justify-center mx-auto sticky top-0 z-10 h-full w-full bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10'>
       <div className='mx-auto'><img src='' width={125} height={40} alt='logo'/></div>
 
 
