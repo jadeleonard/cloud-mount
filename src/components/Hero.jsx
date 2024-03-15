@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import { useState,useEffect } from "react";
 
-const Hero = () => {        
+const Hero = () => {     
+  const [data,setData] = useState([]);
     return (
         <div className="relative">
       <header className="absolute inset-x-0 top-0 z-10 py-4 bg-transparent sm:py-5" x-data="{expanded: false}">

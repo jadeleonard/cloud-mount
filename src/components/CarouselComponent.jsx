@@ -45,7 +45,7 @@ const CarouselComponent = () => {
         <CarouselContent>
           {data.map((item) => (
             <CarouselItem key={item.id}>
-              <img src={item.image} alt={item.name} className='object-fit rounded py-2 px-4 ' />
+              <img src={item.image} alt={item.name} className='object-fit rounded py-2 px-4 ' width={300} height={300}/>
 
             </CarouselItem>
           ))}

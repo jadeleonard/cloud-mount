@@ -78,6 +78,7 @@ const App = () => {
         <Route path='/createitem' element={<Createitems />} />
         {/* Define route for DetailsComponent */}
         <Route path='/details/:itemId' element={<DetailsComponent />} />
+        <Route path='/createitem' element={<Createitems />} />
       </Route>
       
     </Routes>
