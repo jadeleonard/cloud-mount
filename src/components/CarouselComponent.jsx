@@ -43,9 +43,9 @@ const CarouselComponent = () => {
     <div className='relative p-2'>
       <Carousel setApi={setApi} plugins={[Autoplay({ delay: 2000 })]}>
         <CarouselContent>
-          {data.map((item, index) => (
-            <CarouselItem key={index}>
-              <img src={item.image} alt={item.name} />
+          {data.map((item) => (
+            <CarouselItem key={item.id}>
+              <img src={item.image} alt={item.name} className='object-fit rounded py-2 px-4 ' />
 
             </CarouselItem>
           ))}

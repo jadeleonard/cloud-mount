@@ -3,7 +3,7 @@ import { useState,useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import { Button } from './ui/button';
 import { AlertDialog, AlertDialogContent, AlertDialogTrigger,AlertDialogHeader  } from '@/components/ui/alert-dialog';
-
+import axios from 'axios'
 
 
 
@@ -44,7 +44,7 @@ const Navbar = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('https://vercel-cloud-backend-git-main-lukabartos-projects.vercel.app/api/navbar');
+                const response = await axios.get('https://vercel-cloud-backend-git-main-lukabartos-projects.vercel.app/api/navbar');
                 if (response.ok) {
                     const jsonData = await response.json(); // Await JSON parsing
                     setData(jsonData); // Set state with parsed JSON data
