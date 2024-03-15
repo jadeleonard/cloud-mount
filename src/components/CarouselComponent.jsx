@@ -1,57 +1,56 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
+import axios from 'axios';
 
-
-import { useState,useEffect } from 'react';
-import * as AspectRatio from '@radix-ui/react-aspect-ratio';
 const CarouselComponent = () => {
-  const [ data,setData] = useState([]);
+  const [data, setData] = useState([]);
+  const [api, setApi] = useState();
+  const [current, setCurrent] = useState(0);
+  const [count, setCount] = useState(0);
 
-  useEffect(() =>{
-    const fetchData = async () =>{
+  useEffect(() => {
+    const fetchData = async () => {
       try {
-        const response = await fetch('https://vercel-cloud-backend-git-main-lukabartos-projects.vercel.app/api/carousel');
-        if(response.ok){
-          const data = await response.json();
-          setData(data)
-        }
+        const response = await axios.get('https://vercel-cloud-backend-git-main-lukabartos-projects.vercel.app/api/getitems'); // Replace 'https://example.com/api' with your actual endpoint
+        setData(response.data);
       } catch (error) {
-          console.log(error ) 
+        console.error('Error fetching data:', error);
       }
     };
+
     fetchData();
-  },[])
+  }, []);
+
+  useEffect(() => {
+    if (!api) {
+      return;
+    }
+    
+    setCount(api.scrollSnapList().length);
+    setCurrent(api.selectedScrollSnap() + 1);
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap() + 1);
+    });
+  }, [api]);
+
   return (
     <div className='relative p-2'>
-      <Carousel
-        plugins={[
-          Autoplay({
-            delay: 2000,
-          }),
-        ]}
-      >
-          
-       <CarouselContent className='w-1/2'>
-        
-        <CarouselItem className='shadow-blackA4 w-[300px] overflow-hidden rounded-md shadow-[0_2px_10px]'>
-          {data.map((items) =>(
-        <AspectRatio.Root ratio={16 / 9} key={items.id}>
-          <img src={items.image} className='h-full w-full object-cover' alt={items.name} key={items.id}/>
-          </AspectRatio.Root>
+      <Carousel setApi={setApi} plugins={[Autoplay({ delay: 2000 })]}>
+        <CarouselContent>
+          {data.map((item, index) => (
+            <CarouselItem key={index}>
+              <img src={item.image} alt={item.name} />
+
+            </CarouselItem>
           ))}
-        </CarouselItem>
-          
-       </CarouselContent>
-          
+        </CarouselContent>
       </Carousel>
-   
     </div>
   );
 };
