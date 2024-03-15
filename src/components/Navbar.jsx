@@ -68,7 +68,7 @@ const Navbar = () => {
         {data.map((items) =>(
             <li key={items.id}>
 
-                <Link to={items.href} className='uppercase text-md  '>{items.section}</Link>
+                <Link to={items.href} className='uppercase text-md'>{items.section}</Link>
             </li>
         ))}
       </ul>

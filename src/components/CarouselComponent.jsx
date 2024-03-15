@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 
+
 import { useState,useEffect } from 'react';
 import * as AspectRatio from '@radix-ui/react-aspect-ratio';
 const CarouselComponent = () => {
@@ -24,8 +25,9 @@ const CarouselComponent = () => {
       } catch (error) {
           console.log(error ) 
       }
-    }
-  })
+    };
+    fetchData();
+  },[])
   return (
     <div className='relative p-2'>
       <Carousel
@@ -40,7 +42,7 @@ const CarouselComponent = () => {
         
         <CarouselItem className='shadow-blackA4 w-[300px] overflow-hidden rounded-md shadow-[0_2px_10px]'>
           {data.map((items) =>(
-        <AspectRatio.Root ratio={16 / 9}>
+        <AspectRatio.Root ratio={16 / 9} key={items.id}>
           <img src={items.image} className='h-full w-full object-cover' alt={items.name} key={items.id}/>
           </AspectRatio.Root>
           ))}
