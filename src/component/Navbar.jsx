@@ -1,9 +1,26 @@
 import React from 'react'
-import { useState,useEffect } from 'react'
+import { useState,useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios'
+import { Button, Flex } from 'antd';
+import {Input} from '@/components/ui/input'
+import { Dropdown, Space } from 'antd';
+import { AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger,AlertDialogCancel } from '../components/ui/alert-dialog';
 const Navbar = () => {
-  
+  const [loadings, setLoadings] = useState([]);
+  const enterLoading = (index) => {
+    setLoadings((prevLoadings) => {
+      const newLoadings = [...prevLoadings];
+      newLoadings[index] = true;
+      return newLoadings;
+    });
+    setTimeout(() => {
+      setLoadings((prevLoadings) => {
+        const newLoadings = [...prevLoadings];
+        newLoadings[index] = false;
+        return newLoadings;
+      });
+    }, 6000);
+  };
   const [data,setData] = useState([]);
   useEffect(() =>{
     const fetchData = async () =>{
@@ -35,6 +52,30 @@ const Navbar = () => {
             </li>
         ))}
       </ul>
+      <AlertDialog>
+        <AlertDialogTrigger>
+        <Button>Sign In</Button>
+        </AlertDialogTrigger>
+        <AlertDialogContent>
+          <AlertDialogTitle>
+            Sign In
+          </AlertDialogTitle>
+          <AlertDialogHeader>
+            Welcome Back
+          </AlertDialogHeader>
+          <Input placeholder='Email'/>
+          <Input placeholder='password'/>
+          <Input type=''/>
+          <div>
+          <Button   loading={loadings[1]}
+          onClick={() => enterLoading(1)}>Submit</Button>
+          </div>
+          <AlertDialogCancel className='absolute top-2 right-2'>
+          X
+        </AlertDialogCancel>
+        </AlertDialogContent>
+        
+        </AlertDialog>
     </div>
   )
 }
