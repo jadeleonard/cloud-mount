@@ -16,7 +16,7 @@ const CarouselComponent = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://vercel-cloud-backend-git-main-lukabartos-projects.vercel.app/api/getitems'); // Replace 'https://example.com/api' with your actual endpoint
+        const response = await axios.get(process.env.REACT_APP_API); // Replace 'https://example.com/api' with your actual endpoint
         setData(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);

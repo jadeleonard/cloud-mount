@@ -3,17 +3,17 @@ import { Input } from '@/components/ui/input';
 import axios from 'axios';
 
 const CreateItems = () => {
-    const apiUrl = 'vercel-cloud-backend-git-main-lukabartos-projects.vercel.app/api/createitems';
+    const apiUrl = 'https://vercel-cloud-backend-git-main-lukabartos-projects.vercel.app/api/createitems';
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [image, setImage] = useState('');
     const [price, setPrice] = useState('');
     const [seller, setSeller] = useState('');
-
+    
     const handleSubmit = async (e) => {
         e.preventDefault(); // Prevent default form submission
 
-        try {
+        try {t
             const response = await axios.post(apiUrl, {
                 name,
                 description,
