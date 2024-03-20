@@ -7,6 +7,7 @@ import Navbar from '../component/Navbar'
 
 
 import { Button, Flex } from 'antd';
+import Hero from '@/component/Hero';
 
 
 const Landingpages = () => {
@@ -14,12 +15,7 @@ const Landingpages = () => {
     <div>
       <Navbar />
 
-
-
-      <Flex gap="small" wrap="wrap">
-      <Button type="primary">Primary Button</Button>
-      </Flex>
-
+<Hero />
     </div>
   )
 }

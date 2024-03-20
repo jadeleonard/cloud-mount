@@ -4,6 +4,7 @@ import { Button } from 'antd';
 import { Input } from '@/components/ui/input';
 import { AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogTitle, AlertDialogHeader, AlertDialogCancel } from '../components/ui/alert-dialog';
 import {useNavigate} from 'react-router-dom'
+import axios from 'axios';
 const Navbar = () => {
   const [loadings, setLoadings] = useState([]);
   const [email, setEmail] = useState({ email: '', password: '' });
@@ -20,7 +21,7 @@ const Navbar = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
       try {
-        const response = await fetch('https://vercel-cloud-backend-git-main-lukabartos-projects.vercel.app/api/createuser',{
+        const response = await axios.post('https://vercel-cloud-backend-git-main-lukabartos-projects.vercel.app/api/createuser',{
         method:'POST',
         headers:{
           "Content-Type":"application/json"
@@ -70,7 +71,9 @@ const Navbar = () => {
   return (
     <div className='flex items-center justify-center mx-auto py-2 px-4'>
       <div className='mx-auto'>
+        <Link to={'/'}>
         <img src='' width={125} height={40} alt='logo' />
+        </Link>
       </div>
       <ul className='hidden sm:inline-flex gap-4 mx-auto'>
         {data.map((items) => (
@@ -80,7 +83,7 @@ const Navbar = () => {
         ))}
       </ul>
       <AlertDialog>
-        <AlertDialogTrigger asChild>
+        <AlertDialogTrigger >
           <Button>Sign In</Button>
         </AlertDialogTrigger>
         <AlertDialogContent>
