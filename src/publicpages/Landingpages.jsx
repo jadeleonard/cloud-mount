@@ -1,8 +1,7 @@
 import React from 'react'
 import Navbar from '../component/Navbar'
 import { motion, useScroll } from "framer-motion";
-
-
+import dotenv from 'dotenv'
 
 
 
@@ -11,7 +10,10 @@ import Hero from '@/component/Hero';
 
 
 const Landingpages = () => {
+const apiUrl = import.meta.env.VITE_API_URL
   const { scrollYProgress } = useScroll();
+  console.log(apiUrl)
+
   return (
     <div>
   <motion.div

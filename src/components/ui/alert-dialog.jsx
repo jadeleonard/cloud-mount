@@ -15,7 +15,7 @@ const AlertDialogPortal = AlertDialogPrimitive.Portal
 const AlertDialogOverlay = React.forwardRef(({ className, ...props }, ref) => (
   <AlertDialogPrimitive.Overlay
     className={cn(
-      "fixed inset-0 z-50 bg-center bg-no-repeat bg-[url('https://www.psdcenter.com/wp-content/uploads/2023/07/19198941-scaled.jpg')] bg-gray-700 bg-blend-multiply  data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+      "fixed inset-0 z-50 bg-contain sm:bg-center bg-no-repeat  bg-[url('https://www.psdcenter.com/wp-content/uploads/2023/07/19198941-scaled.jpg')] bg-gray-700 bg-blend-multiply  data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
       className
     )}
     {...props}

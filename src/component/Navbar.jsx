@@ -11,7 +11,8 @@ import { motion, useScroll } from "framer-motion"
 
 import axios from 'axios';
 const Navbar = () => {
-
+  const apiUrl = import.meta.env.VITE_API_URL;
+  const apiSub = import.meta.env.VITE_API_CREATE;
   const [loadings, setLoadings] = useState([]);
   const [email, setEmail] = useState({ email: '', password: '' });
   const [data, setData] = useState([]);
@@ -27,7 +28,7 @@ const Navbar = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
       try {
-        const response = await axios.post('https://vercel-cloud-backend-git-main-lukabartos-projects.vercel.app/api/createuser',{
+        const response = await axios.post(apiSub,{
         method:'POST',
         headers:{
           "Content-Type":"application/json"
@@ -61,7 +62,7 @@ const Navbar = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://vercel-cloud-backend-git-main-lukabartos-projects.vercel.app/api/navbar');
+        const response = await fetch(apiUrl);
         if (response.ok) {
           const data = await response.json();
           setData(data);
