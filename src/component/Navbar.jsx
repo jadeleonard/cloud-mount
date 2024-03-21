@@ -76,7 +76,7 @@ const Navbar = () => {
   }, []);
 
   return ( 
-    <div className='flex items-center justify-center mx-auto py-2 px-4'>
+    <div className='flex items-center justify-center mx-auto py-2 px-4 sticky top-0 bg-orange-400'>
       <div className='mx-auto'>
         <Link to={'/'}>
         <img src='' width={125} height={40} alt='logo' />
