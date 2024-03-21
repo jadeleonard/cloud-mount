@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'antd';
-import { Input } from '@/components/ui/input';
 import { AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogTitle, AlertDialogHeader, AlertDialogCancel } from '../components/ui/alert-dialog';
-import {useNavigate} from 'react-router-dom'
-
-
-
+import { useNavigate } from 'react-router-dom'
+import { SignIn, SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
 import { motion, useScroll } from "framer-motion"
-
 import axios from 'axios';
+
 const Navbar = () => {
   const apiUrl = import.meta.env.VITE_API_URL;
   const apiSub = import.meta.env.VITE_API_CREATE;
@@ -27,22 +24,21 @@ const Navbar = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-      try {
-        const response = await axios.post(apiSub,{
-        method:'POST',
-        headers:{
-          "Content-Type":"application/json"
+    try {
+      const response = await axios.post(apiSub, {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json"
         },
-        body:JSON.stringify(email)
-        }
-        );
-        if(response.ok){
-          redirect('/dashboard')
-        }
-      } catch (error) {
-        console.log(error)
+        body: JSON.stringify(email)
+      });
+      if (response.ok) {
+        redirect('/dashboard')
       }
-    };
+    } catch (error) {
+      console.log(error)
+    }
+  };
 
   const enterLoading = (index) => {
     setLoadings((prevLoadings) => {
@@ -75,11 +71,11 @@ const Navbar = () => {
     fetchData();
   }, []);
 
-  return ( 
+  return (
     <div className='flex items-center justify-center mx-auto py-2 px-4 sticky top-0 bg-orange-400'>
       <div className='mx-auto'>
         <Link to={'/'}>
-        <img src='' width={125} height={40} alt='logo' />
+          <img src='' width={125} height={40} alt='logo' />
         </Link>
       </div>
       <ul className='hidden sm:inline-flex gap-4 mx-auto text-sm'>
@@ -89,23 +85,21 @@ const Navbar = () => {
           </li>
         ))}
       </ul>
-      <AlertDialog>
-        <AlertDialogTrigger >
-          <Button>Sign In</Button>
-        </AlertDialogTrigger>
-        <AlertDialogContent>
-          <AlertDialogTitle>Sign In</AlertDialogTitle>
-          <AlertDialogHeader>Welcome Back</AlertDialogHeader>
-          <Input placeholder='Email' name='email' value={email.email} onChange={handleChange} />
-          <Input placeholder='Password' name='password' type='password' value={email.password} onChange={handleChange} />
-          <div>
-          <Button loading={loadings[1]} onClick={(e) => { enterLoading(1); handleSubmit(e); }}>Submit</Button>
-
-
-          </div>
-          <AlertDialogCancel className='absolute top-2 right-2'>X</AlertDialogCancel>
-        </AlertDialogContent>
-      </AlertDialog>
+      <SignedOut>
+        {/* Render the "Sign In" button only if the user is not logged in */}
+        <AlertDialog>
+          <AlertDialogTrigger>
+            <Button>Sign In</Button>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <SignIn />
+          </AlertDialogContent>
+        </AlertDialog>
+      </SignedOut>
+      <SignedIn>
+        {/* Render the user button if the user is logged in */}
+        <UserButton afterSignOutUrl='/' />
+      </SignedIn>
     </div>
   );
 };
