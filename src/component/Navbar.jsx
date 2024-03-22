@@ -93,6 +93,9 @@ const Navbar = () => {
           </AlertDialogTrigger>
           <AlertDialogContent>
             <SignIn />
+            <AlertDialogCancel className='absolute top-2 right-2'>
+              X
+            </AlertDialogCancel>
           </AlertDialogContent>
         </AlertDialog>
       </SignedOut>

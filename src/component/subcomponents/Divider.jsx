@@ -14,11 +14,11 @@ const Divider = () => {
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
   const [ref, inView] = useInView();
-
+  const apiUrl = import.meta.env.VITE_API_SHOES
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://vercel-cloud-backend-git-main-lukabartos-projects.vercel.app/api/getitems');
+        const response = await fetch(apiUrl);
         if (!response.ok) {
           navigate('/error');
           return;
