@@ -1,6 +1,7 @@
 import React from 'react'
 import Divider from './subcomponents/Divider'
 import Feature from './subcomponents/Feature'
+import CardEcommerce from './subcomponents/CardEcommerce'
 
 
 
@@ -17,7 +18,7 @@ const Hero = () => {
 
       <div p-20>
       <Feature />
-      <Divider />
+      
       </div>
    
     </div>
